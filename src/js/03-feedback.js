@@ -2,10 +2,9 @@ import throttle from 'lodash.throttle';
 import '../css/common.css';
 import '../css/03-feedback.css';
 
-const form = document.querySelector("input", "textarea")
-const submit = document.querySelector("button")
-console.log(form);
+const STOREGE_KEY = "feedback-form-state";
 
+const submit = document.querySelector(".feedback-form")
 
 form.addEventListener("input", throttle(onInput, 500));
 submit.addEventListener("submit", onSubmit);
@@ -14,7 +13,7 @@ function onInput(evt) {
     evt.preventDefault();
     const message = evt.target.value;
 
-    localStorage.setItem("feedback-form-state", message);
+    localStorage.setItem(STOREGE_KEY, message);
 }
 
 function onSubmit(evt) {
@@ -23,13 +22,13 @@ function onSubmit(evt) {
         elements: { email, message },
     } = evt.currentTarget;
     const formData = { email: email.value, message: message.value };
-    console.log('тправка формы');
-    evt.target.reset("feedback-form-state");
-    localStorage.removeItem()
+    console.log('тправка формы', formData);
+    evt.target.reset();
+    localStorage.removeItem(STOREGE_KEY)
 }
 
 function populateTextarea() {
-    const saveMessagr = localStorage.getItem("feedback-form-state");
+    const saveMessagr = localStorage.getItem(STOREGE_KEY);
     if (saveMessagr) {
         
     }
