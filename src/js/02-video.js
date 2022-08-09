@@ -1,21 +1,24 @@
 import Player from '@vimeo/player';
 import '../css/common.css';
-import '../css/03-feedback.css';
+import throttle from 'lodash.throttle';
+
+const LOCALSTORAGE_KEY = "feedback-form-state";
+
 
 const iframe = document.querySelector('#vimeo-player');
 
 const player = new Player(iframe);
 
-const getCurrentTime = localStorage.getItem("feedback-form-state");
+const getCurrentTime = localStorage.getItem(LOCALSTORAGE_KEY);
 
 if (getCurrentTime) {
 
-    // .setCurrentTime - фиксирует плеер на том-же месте
+    // фиксирует плеер на том-же месте
     player.setCurrentTime(getCurrentTime);
 }
 
 function onPlay({seconds}) {
-localStorage.setItem("feedback-form-state", seconds)
+localStorage.setItem(LOCALSTORAGE_KEY, seconds)
 
 }
 player.on('timeupdate', throttle(onPlay, 1000));
