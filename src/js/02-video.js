@@ -17,8 +17,8 @@ if (getCurrentTime) {
     player.setCurrentTime(getCurrentTime);
 }
 
-function onPlay({seconds}) {
-localStorage.setItem(LOCALSTORAGE_KEY, seconds)
+function onPlay({ seconds }) {
+    localStorage.setItem(LOCALSTORAGE_KEY, seconds)
 
 }
 player.on('timeupdate', throttle(onPlay, 1000));
