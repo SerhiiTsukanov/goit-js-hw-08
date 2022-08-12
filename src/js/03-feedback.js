@@ -10,7 +10,7 @@ form.addEventListener("submit", onSubmit);
 
 let formObject = {};
 initForm();
-updateInputForm();
+// updateInputForm();
 
 
 function onInput(evt) {
@@ -47,15 +47,17 @@ function onSubmit(evt) {
   evt.currentTarget.reset();
 }
 
-function updateInputForm() {
- const saveForm = localStorage.getItem(STORAGE_KEY);
- const saveFormPars = JSON.parse(saveForm);
+// function updateInputForm() {
+//  const saveForm = localStorage.getItem(STORAGE_KEY);
+//  const saveFormPars = JSON.parse(saveForm);
 
- if(saveForm) {
-  form.elements.email.value = saveFormPars.email || '';
-  form.elements.message.value = saveFormPars.message || '';
- };
-};
+//  if(saveForm) {
+//   form.elements.email.value = saveFormPars.email || '';
+//   form.elements.message.value = saveFormPars.message || '';
+//  };
+// };
+
+
 // function onInput(evt) {
 //     evt.preventDefault();
 //     const message = evt.target.value;
