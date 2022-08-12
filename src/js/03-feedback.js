@@ -10,7 +10,6 @@ form.addEventListener("submit", onSubmit);
 
 let formObject = {};
 initForm();
-// updateInputForm();
 
 
 function onInput(evt) {
@@ -36,50 +35,15 @@ function onSubmit(evt) {
 
   const {
     elements: { email, message },
-  } = evt.currentTarget;
+  } = evt.target;
   const formData = { email: email.value, message: message.value };
 
   if (email.value === '' || message.value === '') {
     return alert('Пожалуйста, заполните пустые строки!');
   }
+  formObject = {};
   console.log('Отправляем форму: ', formData);
   localStorage.removeItem(STORAGE_KEY);
-  evt.currentTarget.reset();
+  evt.target.reset();
 }
-
-// function updateInputForm() {
-//  const saveForm = localStorage.getItem(STORAGE_KEY);
-//  const saveFormPars = JSON.parse(saveForm);
-
-//  if(saveForm) {
-//   form.elements.email.value = saveFormPars.email || '';
-//   form.elements.message.value = saveFormPars.message || '';
-//  };
-// };
-
-
-// function onInput(evt) {
-//     evt.preventDefault();
-//     const message = evt.target.value;
-
-//     localStorage.setItem(STORAGE_KEY, message);
-// }
-
-// function onSubmit(evt) {
-//     evt.preventDefault();
-//     const {
-//         elements: { email, message },
-//     } = evt.currentTarget;
-//     const formData = { email: email.value, message: message.value };
-//     console.log('отправка формы', formData);
-//     evt.target.reset();
-//     localStorage.removeItem(STORAGE_KEY)
-// }
-
-// function populateTextarea() {
-//     const saveMessagr = localStorage.getItem(STORAGE_KEY);
-//     if (saveMessagr) {
-        
-//     }
-// }
 
