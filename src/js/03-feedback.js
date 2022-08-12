@@ -3,21 +3,21 @@ import '../css/common.css';
 import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = "feedback-form-state";
+const form = document.querySelector(".feedback-form");
 
-const form = document.querySelector('.feedback-form');
+form.addEventListener("input", throttle(onInput), 500)
+form.addEventListener("submit", onSubmit);
 
-
-
-form.addEventListener('input', throttle(onInput), 500)
-form.addEventListener('submit', onSubmit);
-
-
+let formObject = {};
 initForm();
 updateInputForm();
 
+
 function onInput(evt) {
-  formObject[evt.target.name] = evt.target.value;
+  evt.preventDefault();
+ formObject[evt.target.name] = evt.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formObject));
+  console.log(formObject);
 }
 
 function initForm() {
@@ -31,8 +31,6 @@ function initForm() {
   }
 }
 
-
-
 function onSubmit(evt) {
   evt.preventDefault();
 
@@ -44,7 +42,7 @@ function onSubmit(evt) {
   if (email.value === '' || message.value === '') {
     return alert('Пожалуйста, заполните пустые строки!');
   }
-  console.log("Отправляем форму: ", formData);
+  console.log('Отправляем форму: ', formData);
   localStorage.removeItem(STORAGE_KEY);
   evt.currentTarget.reset();
 }
